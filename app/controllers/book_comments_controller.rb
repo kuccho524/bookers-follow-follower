@@ -11,12 +11,8 @@ class BookCommentsController < ApplicationController
   def destroy
     book = Book.find(params[:book_id])
     comment = current_user.book_comments.find_by(book_id: book.id)
-    if comment.user == current_user
-      comment.destroy
-      redirect_back(fallback_location: root_path)
-    else
-      render :show
-    end
+    comment.destroy
+    redirect_back(fallback_location: root_path)
   end
 
   private
